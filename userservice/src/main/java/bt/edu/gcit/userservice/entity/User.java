@@ -33,6 +33,8 @@ public class User {
     private String gender;
     @Column(length = 64, nullable = false)
     private String password;
+    @Column(name = "token", length = 45, nullable = false)
+    private Long token;
     @Column(length = 64)
     private String photo;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -126,6 +128,14 @@ public class User {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Long getToken() {
+        return token;
+    }
+
+    public void setToken(Long token) {
+        this.token = token;
     }
 
 
