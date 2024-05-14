@@ -58,7 +58,7 @@ public class DentalSecurityConfig {
         http.authorizeHttpRequests(configurer -> configurer
                 .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/auth/logout").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/users").hasAuthority("Receptionist")
+                .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
                 .requestMatchers(HttpMethod.GET,
                         "/api/users/checkDuplicateEmail")
                 .hasAuthority("Receptionist")

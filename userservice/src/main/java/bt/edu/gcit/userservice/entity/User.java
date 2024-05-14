@@ -33,10 +33,8 @@ public class User {
     private String gender;
     @Column(length = 64, nullable = false)
     private String password;
-    @Column(name = "token", length = 45, nullable = false)
+    @Column(name = "token", length = 45, nullable = true)
     private Long token;
-    @Column(length = 64)
-    private String photo;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
@@ -120,14 +118,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public Long getToken() {
