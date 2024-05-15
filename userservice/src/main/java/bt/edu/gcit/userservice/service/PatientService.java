@@ -12,13 +12,14 @@ public interface PatientService {
     Patient registerPatient(Patient patient);
 
     boolean isEmailUnique(String email);
+    boolean isNumberUnique(Long number);
 
     // boolean verify(String code);
     Patient getPatientById(long id);
 
     List<Patient> getAllPatients();
 
-    Patient updatePatient(Patient patient);
+    Patient updateToken(int id, Long token);
 
     void deletePatient(long id);
 

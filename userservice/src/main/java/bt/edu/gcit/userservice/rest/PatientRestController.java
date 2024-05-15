@@ -6,11 +6,12 @@ import bt.edu.gcit.userservice.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import bt.edu.gcit.userservice.entity.AuthenticationType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/patient")
@@ -38,11 +39,16 @@ public class PatientRestController {
     }
 
     @PostMapping("/isEmailUnique")
-    // public boolean isEmailUnique(@RequestBody String email) {
-    //     return patientService.isEmailUnique(email);
-    // }
-    public ResponseEntity<Boolean> iisEmailUnique(@RequestParam String email) {
+    public ResponseEntity<Boolean> isEmailUnique(@RequestBody Map<String, String> requestBody) {
+        String email = requestBody.get("email");
         boolean isUnique = patientService.isEmailUnique(email);
+        return ResponseEntity.ok(isUnique);
+    }
+
+    @PostMapping("/isNumberUnique")
+    public ResponseEntity<Boolean> isNumberUnique(@RequestBody Map<String, Long> requestBody) {
+        Long number = requestBody.get("phoneNumber");
+        boolean isUnique = patientService.isNumberUnique(number);
         return ResponseEntity.ok(isUnique);
     }
 
@@ -56,9 +62,10 @@ public class PatientRestController {
         return patientService.getAllPatients();
     }
 
-    @PutMapping("/update")
-    public Patient updatePatient(@RequestBody Patient patient) {
-        return patientService.updatePatient(patient);
+    @PutMapping("/update/{id}")
+    public Patient updatePatient(@PathVariable int id, @RequestBody Map<String, Long> body) {
+        Long token = body.get("token");
+        return patientService.updateToken(id, token);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -1,6 +1,5 @@
 package bt.edu.gcit.userservice.entity;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -28,13 +27,13 @@ public class Feedback {
     @Column(length = 128, nullable = false)
     private String email;
 
-    @Column( length = 128, nullable = false)
+    @Column( length = 9000, nullable = false)
     private String feedback;
 
     // @Column(nullable = false)
     // private Long userId;
 
-    @Column(name = "created_time", nullable = false)
+    @Column(name = "created_time", nullable = true)
     private Date createdTime;
 
     @PrePersist

@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import bt.edu.gcit.userservice.dao.PatientDAO;
 import bt.edu.gcit.userservice.entity.Patient;
+import bt.edu.gcit.userservice.exception.UserNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import bt.edu.gcit.userservice.entity.AuthenticationType;
@@ -51,6 +53,13 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     @Transactional
+    public boolean isNumberUnique(Long number) {
+        Patient patient=patientDAO.findByNumber(number);
+        return patient != null;
+    }
+
+    @Override
+    @Transactional
     public Patient getPatientById(long id) {
         return patientDAO.getPatientById(id);
     }
@@ -63,8 +72,14 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     @Transactional
-    public Patient updatePatient(Patient patient) {
-        return patientDAO.updatePatient(patient);
+    public Patient updateToken(int id, Long token) {
+        Patient existing = patientDAO.getPatientById(id);
+        if(existing == null){
+            throw new UserNotFoundException("Patient not found with id "+id);
+        }
+
+        existing.setToken(token);
+        return patientDAO.registerPatient(existing);
     }
 
     @Override

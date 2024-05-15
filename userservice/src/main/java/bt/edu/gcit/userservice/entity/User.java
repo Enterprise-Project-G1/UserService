@@ -6,13 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.JoinTable;
 import java.util.HashSet;
 import java.util.Set;
-import bt.edu.gcit.userservice.entity.Role;
 import jakarta.persistence.FetchType;
 
 @Entity
@@ -33,8 +31,6 @@ public class User {
     private String gender;
     @Column(length = 64, nullable = false)
     private String password;
-    @Column(name = "token", length = 45, nullable = true)
-    private Long token;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
@@ -119,14 +115,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Long getToken() {
-        return token;
-    }
-
-    public void setToken(Long token) {
-        this.token = token;
-    }
-
 
 }

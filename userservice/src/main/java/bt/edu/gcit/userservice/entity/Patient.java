@@ -2,8 +2,6 @@ package bt.edu.gcit.userservice.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.List;
-import bt.edu.gcit.userservice.entity.AuthenticationType;
 
 @Entity
 @Table(name = "patients")
@@ -24,16 +22,18 @@ public class Patient {
     @Column(name = "phone_number", nullable = false)
     private Long phoneNumber;
     @Column(name = "date_of_birth",nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private String dateOfBirth;
+    
+    @Column(name = "token",nullable = true)
+    private Long token;
 
-    @Column(name = "enabled", nullable = false)
+    @Column(name = "enabled", nullable = true)
     private Boolean enabled;
-    @Column(name = "created_time", nullable = false)
+    @Column(name = "created_time", nullable = true)
     private Date createdTime;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "authentication_type", nullable = false, length = 10)
+    @Column(name = "authentication_type", nullable = true, length = 10)
     private AuthenticationType authenticationType;
 
     @PrePersist
@@ -53,13 +53,14 @@ public class Patient {
 
     }
 
-    public Patient(String email, String password, String name, Long phoneNumber, String gender, Date dateOfBirth) {
+    public Patient(String email, String password, String name, Long phoneNumber, String gender, String dateOfBirth, Long token) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber=phoneNumber;
         this.gender=gender;
         this.dateOfBirth=dateOfBirth;
+        this.token = token;
     }
 
     public Long getId() {
@@ -102,13 +103,19 @@ public class Patient {
         this.gender = gender;
     }
 
-   
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public Date getDateOfBirth() {
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -128,12 +135,12 @@ public class Patient {
         this.createdTime = createdTime;
     }
 
-    public Long getPhoneNumber() {
-        return phoneNumber;
+    public Long getToken() {
+        return token;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setToken(Long token) {
+        this.token = token;
     }
 
 }

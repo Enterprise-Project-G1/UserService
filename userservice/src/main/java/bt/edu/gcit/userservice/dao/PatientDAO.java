@@ -6,7 +6,7 @@ import bt.edu.gcit.userservice.entity.AuthenticationType;
 
 public interface PatientDAO {
     public Patient findByEMail(String email);
-
+    public Patient findByNumber(Long number);
     public void enable(long id);
 
     Patient registerPatient(Patient patient);
@@ -18,7 +18,7 @@ public interface PatientDAO {
 
     List<Patient> getAllPatients();
 
-    Patient updatePatient(Patient patient);
+    Patient updatePatient(int id, Patient patient);
 
     void deletePatient(long id);
 

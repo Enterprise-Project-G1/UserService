@@ -20,14 +20,24 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public Patient findByEMail(String email) {
-        TypedQuery<Patient> query = entityManager.createQuery("from Patient where email =:email", Patient.class);
+        TypedQuery<Patient> query = entityManager.createQuery("SELECT p FROM Patient p WHERE p.email = :email", Patient.class);
         query.setParameter("email", email);
         List<Patient> patients = query.getResultList();
-        System.out.println(patients.size());
         if (patients.isEmpty()) {
             return null;
         } else {
-            System.out.println(patients.get(0) + " " + patients.get(0).getEmail());
+            return patients.get(0);
+        }
+    }
+
+    @Override
+    public Patient findByNumber(Long number) {
+        TypedQuery<Patient> query = entityManager.createQuery("SELECT p FROM Patient p WHERE p.phoneNumber = :number", Patient.class);
+        query.setParameter("number", number);
+        List<Patient> patients = query.getResultList();
+        if (patients.isEmpty()) {
+            return null;
+        } else {
             return patients.get(0);
         }
     }
@@ -53,20 +63,15 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public boolean isEmailUnique(String email) {
-    //     TypedQuery<Long> query = entityManager.createQuery(
-    //             "SELECT COUNT(p) FROM Patient p WHERE p.email = :email", Long.class);
-    //     query.setParameter("email", email);
-    //     Long count = query.getSingleResult();
-    //     return count == 0L;
-    TypedQuery<Patient> query = entityManager.createQuery(
-            "SELECT p FROM Patient p WHERE p.email = :email", Patient.class);
-    query.setParameter("email", email);
-    List<Patient> patients = query.getResultList();
-    if (patients.isEmpty()) {
-        return false; // Email does not exist in the database
-    } else {
-        return true; // Return the first Patient entity with the given email
-    }
+        TypedQuery<Patient> query = entityManager.createQuery(
+                "SELECT p FROM Patient p WHERE p.email = :email", Patient.class);
+        query.setParameter("email", email);
+        List<Patient> patients = query.getResultList();
+        if (patients.isEmpty()) {
+            return false; // Email does not exist in the database
+        } else {
+            return true; // Return the first Patient entity with the given email
+        }
     }
     
 
@@ -83,8 +88,13 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public Patient updatePatient(Patient patient) {
-        return entityManager.merge(patient);
+    public Patient updatePatient(int id, Patient patient) {
+        Patient existingPatient = entityManager.find(Patient.class, id);
+        if(existingPatient != null) {
+            patient.setId(existingPatient.getId());
+            return entityManager.merge(patient);
+        }
+        return null;
     }
 
     @Override
