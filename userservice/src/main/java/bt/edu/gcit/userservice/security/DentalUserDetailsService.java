@@ -15,7 +15,6 @@ import java.util.Collections;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import bt.edu.gcit.userservice.security.DentaluserDetails;
 
 @Service
 public class DentalUserDetailsService implements UserDetailsService {

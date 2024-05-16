@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,6 +30,11 @@ public class UserRestController {
     @PostMapping("/users")
     public User save(@RequestBody User user) {
         return userService.save(user);
+    }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @GetMapping("/users/checkDuplicateEmail")

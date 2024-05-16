@@ -23,6 +23,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
+        return query.getResultList();
+    }
+
+    @Override
     public User findByEmail(String email) {
         TypedQuery<User> query = entityManager.createQuery("from User where email =:email", User.class);
         query.setParameter("email", email);

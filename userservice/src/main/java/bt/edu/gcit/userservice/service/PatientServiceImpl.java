@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import bt.edu.gcit.userservice.entity.AuthenticationType;
 import java.util.Date;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service

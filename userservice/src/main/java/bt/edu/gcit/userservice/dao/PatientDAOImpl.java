@@ -1,7 +1,6 @@
 package bt.edu.gcit.userservice.dao;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import bt.edu.gcit.userservice.entity.Patient;
 import org.springframework.stereotype.Repository;

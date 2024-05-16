@@ -2,11 +2,13 @@ package bt.edu.gcit.userservice.service;
 
 import bt.edu.gcit.userservice.dao.UserDAO;
 import bt.edu.gcit.userservice.entity.User;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.context.annotation.Lazy;
 import bt.edu.gcit.userservice.exception.UserNotFoundException;
 
@@ -27,6 +29,12 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userDAO.save(user);
+    }
+
+    @Override
+    @Transactional
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
     }
 
     @Override
