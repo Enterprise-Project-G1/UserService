@@ -21,7 +21,7 @@ public class User {
     private Long id;
     @Column(length = 128, nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private boolean enabled;
     @Column(name = "name", length = 64, nullable = false)
     private String name;

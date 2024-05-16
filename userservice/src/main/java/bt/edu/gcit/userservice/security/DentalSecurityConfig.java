@@ -75,7 +75,7 @@ public class DentalSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/feedbacks").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/feedbacks/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/feedbacks").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/feedbacks/{id}").hasAuthority("Receptionist")
+                .requestMatchers(HttpMethod.DELETE, "/api/feedbacks/{id}").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/appointments").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/appointments/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/appointments").permitAll()
