@@ -20,7 +20,8 @@ public interface PatientService {
     List<Patient> getAllPatients();
 
     Patient updateToken(int id, Long token);
-
+    Patient disableAccount(int id);
+    Patient enableAccount(int id);
     void deletePatient(long id);
 
     void updateAuthenticationType(Long patientId, AuthenticationType type);

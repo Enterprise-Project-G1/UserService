@@ -33,11 +33,6 @@ public class PatientRestController {
         // implementation depends on your email service
     }
 
-    @PostMapping("/enable/{id}")
-    public void enable(@PathVariable long id) {
-        patientService.enable(id);
-    }
-
     @PostMapping("/isEmailUnique")
     public ResponseEntity<Boolean> isEmailUnique(@RequestBody Map<String, String> requestBody) {
         String email = requestBody.get("email");
@@ -62,10 +57,25 @@ public class PatientRestController {
         return patientService.getAllPatients();
     }
 
+    @GetMapping("/byEmail/{email}")
+    public Patient getPatientByEmail(@PathVariable String email) {
+        return patientService.findByEMail(email);
+    }
+
     @PutMapping("/update/{id}")
     public Patient updatePatient(@PathVariable int id, @RequestBody Map<String, Long> body) {
         Long token = body.get("token");
         return patientService.updateToken(id, token);
+    }
+
+    @PutMapping("/disable/{id}")
+    public Patient accountDisable(@PathVariable int id) {
+        return patientService.disableAccount(id);
+    }
+
+    @PutMapping("/enable/{id}")
+    public Patient accountEnable(@PathVariable int id) {
+        return patientService.enableAccount(id);
     }
 
     @DeleteMapping("/delete/{id}")

@@ -19,6 +19,7 @@ public class PatientDAOImpl implements PatientDAO {
 
     @Override
     public Patient findByEMail(String email) {
+        System.out.println(email);
         TypedQuery<Patient> query = entityManager.createQuery("SELECT p FROM Patient p WHERE p.email = :email", Patient.class);
         query.setParameter("email", email);
         List<Patient> patients = query.getResultList();
