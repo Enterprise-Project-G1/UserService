@@ -59,6 +59,13 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     @Transactional
+    public boolean isTokenUnique(Long token) {
+        Patient patient=patientDAO.findByToken(token);
+        return patient != null;
+    }
+
+    @Override
+    @Transactional
     public Patient getPatientById(long id) {
         return patientDAO.getPatientById(id);
     }

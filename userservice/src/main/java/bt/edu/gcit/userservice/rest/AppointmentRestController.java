@@ -1,6 +1,8 @@
 package bt.edu.gcit.userservice.rest;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +34,12 @@ public class AppointmentRestController {
     @GetMapping("/appointments")
     public List<Appointment> findAll() {
         return appointmentService.findAll();
+    }
+
+    @GetMapping("/appointments/byDate")
+    public List<Appointment> findByDate(@RequestBody Date date) {
+        System.out.println(date);
+        return appointmentService.findByDate(date);
     }
 
     @DeleteMapping("/appointments/{id}")

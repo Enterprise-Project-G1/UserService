@@ -1,5 +1,6 @@
 package bt.edu.gcit.userservice.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import bt.edu.gcit.userservice.entity.Appointment;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 @Repository
 public class AppointmentDAOImpl implements AppointmentDAO{
@@ -37,5 +39,17 @@ public class AppointmentDAOImpl implements AppointmentDAO{
     public void deleteById(int theId){
         Appointment appointment = findByID(theId);
         entityManager.remove(appointment);
+    }
+
+    @Override
+    public List<Appointment> findByDate(Date date) {
+        TypedQuery<Appointment> query = entityManager.createQuery("SELECT p FROM Appointment p WHERE p.date = :date", Appointment.class);
+        query.setParameter("date", date);
+        List<Appointment> appointments = query.getResultList();
+        if (appointments.isEmpty()) {
+            return null;
+        } else {
+            return appointments;
+        }
     }
 }

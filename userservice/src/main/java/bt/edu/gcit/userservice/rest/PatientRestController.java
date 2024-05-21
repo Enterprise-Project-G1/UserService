@@ -47,6 +47,13 @@ public class PatientRestController {
         return ResponseEntity.ok(isUnique);
     }
 
+    @PostMapping("/isTokenUnique")
+    public ResponseEntity<Boolean> isTokenUnique(@RequestBody Map<String, Long> requestBody) {
+        Long token = requestBody.get("token");
+        boolean isUnique = patientService.isTokenUnique(token);
+        return ResponseEntity.ok(isUnique);
+    }
+
     @GetMapping("/{id}")
     public Patient getPatientById(@PathVariable long id) {
         return patientService.getPatientById(id);

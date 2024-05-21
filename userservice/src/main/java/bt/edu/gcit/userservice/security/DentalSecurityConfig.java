@@ -12,9 +12,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
+
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import java.util.Arrays;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -73,6 +75,8 @@ public class DentalSecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/api/patient/disable/{id}").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/api/patient/enable/{id}").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient/isEmailUnique").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/patient/isNumberUnique").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/patient/isTokenUnique").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/patient/delete/{id}").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient//enable/{id}").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/feedbacks").permitAll()
@@ -82,6 +86,7 @@ public class DentalSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/appointments").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/appointments/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/appointments").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/appointments/byDate").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/appointments/{id}").permitAll()
 
                 )

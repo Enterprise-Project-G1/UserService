@@ -13,7 +13,7 @@ public interface PatientService {
 
     boolean isEmailUnique(String email);
     boolean isNumberUnique(Long number);
-
+    boolean isTokenUnique(Long token);
     // boolean verify(String code);
     Patient getPatientById(long id);
 

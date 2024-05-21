@@ -43,6 +43,18 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
+    public Patient findByToken(Long token) {
+        TypedQuery<Patient> query = entityManager.createQuery("SELECT p FROM Patient p WHERE p.token = :token", Patient.class);
+        query.setParameter("token", token);
+        List<Patient> patients = query.getResultList();
+        if (patients.isEmpty()) {
+            return null;
+        } else {
+            return patients.get(0);
+        }
+    }
+
+    @Override
     public void enable(long id) {
         Patient patient = entityManager.find(Patient.class, id);
         if (patient != null) {

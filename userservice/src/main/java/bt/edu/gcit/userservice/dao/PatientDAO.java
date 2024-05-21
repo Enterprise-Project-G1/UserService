@@ -8,7 +8,7 @@ public interface PatientDAO {
     public Patient findByEMail(String email);
     public Patient findByNumber(Long number);
     public void enable(long id);
-
+    Patient findByToken(Long token);
     Patient registerPatient(Patient patient);
 
     boolean isEmailUnique(String email);

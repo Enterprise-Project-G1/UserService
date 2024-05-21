@@ -1,5 +1,6 @@
 package bt.edu.gcit.userservice.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,11 @@ public class AppointmentServiceImpl implements AppointmentService{
     @Transactional
     public void deleteById(int theId) {
         appointmentDAO.deleteById(theId);
+    }
+
+    @Override
+    @Transactional
+    public List<Appointment> findByDate(Date date) {
+        return appointmentDAO.findByDate(date);
     }
 }

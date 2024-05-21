@@ -1,5 +1,7 @@
 package bt.edu.gcit.userservice.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +20,7 @@ public class Appointment {
     private Long patientId;
 
     @Column(name="date", nullable = false)
-    private String date;
+    private Date date;
 
     @Column(name="reason", nullable = false, length = 500)
     private String reason;
@@ -27,7 +29,7 @@ public class Appointment {
 
     }
 
-    public Appointment(Long patientId, String date, String reason){
+    public Appointment(Long patientId, Date date, String reason){
         this.patientId = patientId;
         this.date = date;
         this.reason = reason;
@@ -49,11 +51,11 @@ public class Appointment {
         this.patientId = patientId;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
