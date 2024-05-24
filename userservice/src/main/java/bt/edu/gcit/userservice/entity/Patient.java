@@ -29,6 +29,10 @@ public class Patient {
 
     @Column(name = "enabled", nullable = true)
     private Boolean enabled;
+
+    @Column(name = "active", nullable = true)
+    private Boolean active;
+
     @Column(name = "created_time", nullable = true)
     private Date createdTime;
 
@@ -141,6 +145,14 @@ public class Patient {
 
     public void setToken(Long token) {
         this.token = token;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
 }

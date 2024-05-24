@@ -114,6 +114,30 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     @Transactional
+    public Patient setActive(int id) {
+        Patient existing = patientDAO.getPatientById(id);
+        if(existing == null) {
+            throw new UserNotFoundException("Patient not found with id "+id);
+        }
+
+        existing.setActive(true);
+        return patientDAO.registerPatient(existing);
+    }
+
+    @Override
+    @Transactional
+    public Patient setInactive(int id) {
+        Patient existing = patientDAO.getPatientById(id);
+        if(existing == null) {
+            throw new UserNotFoundException("Patient not found with id "+id);
+        }
+
+        existing.setActive(false);
+        return patientDAO.registerPatient(existing);
+    }
+
+    @Override
+    @Transactional
     public void deletePatient(long id) {
         patientDAO.deletePatient(id);
     }
