@@ -74,6 +74,8 @@ public class DentalSecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/api/patient/update/{id}").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/api/patient/disable/{id}").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/api/patient/enable/{id}").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/patient/active/{id}").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/patient/inactive/{id}").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient/isEmailUnique").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient/isNumberUnique").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/patient/isTokenUnique").permitAll()

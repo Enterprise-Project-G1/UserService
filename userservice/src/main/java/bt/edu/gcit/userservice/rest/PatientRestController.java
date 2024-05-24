@@ -85,6 +85,16 @@ public class PatientRestController {
         return patientService.enableAccount(id);
     }
 
+    @PutMapping("/active/{id}")
+    public Patient setActive(@PathVariable int id) {
+        return patientService.setActive(id);
+    }
+
+    @PutMapping("/inactive/{id}")
+    public Patient setInactive(@PathVariable int id) {
+        return patientService.setInactive(id);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deletePatient(@PathVariable long id) {
         patientService.deletePatient(id);

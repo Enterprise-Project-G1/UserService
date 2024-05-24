@@ -24,6 +24,9 @@ public interface PatientService {
     Patient enableAccount(int id);
     void deletePatient(long id);
 
+    Patient setActive(int id);
+    Patient setInactive(int id);
+
     void updateAuthenticationType(Long patientId, AuthenticationType type);
 
     void addNewPatientUponOAuthLogin(String name, String email, AuthenticationType authenticationType);
